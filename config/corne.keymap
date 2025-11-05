@@ -12,65 +12,85 @@
     behaviors {
         toggle_bt_layer: toggle_bt_layer {
             compatible = "zmk,behavior-toggle-layer";
+            label = "BT_TOGGLE";
             #binding-cells = <1>;
         };
 
         TD_ESC_TICK: TD_ESC_TICK {
             compatible = "zmk,behavior-tap-dance";
+            label = "TD_ESC_TICK";
             #binding-cells = <0>;
             bindings = <&kp ESC>, <&kp GRAVE>, <&kp TILDE>;
         };
-        
-        /* ----- Your new "Triple Tap" Behavior ----- */
-        TD_QUOTE_PIPE_BSLH: TD_QUOTE_PIPE_BSLH {
+
+        TD_QUOTE_PIPE: TD_QUOTE_PIPE {
             compatible = "zmk,behavior-tap-dance";
+            label = "TD_QUOTE_PIPE";
             #binding-cells = <0>;
-            // 1 tap = ',  2 taps = |,  3 taps = \
-            bindings = <&kp SQT>, <&kp PIPE>, <&kp BSLH>;
+            bindings = <&kp SQT>, <&kp PIPE>, <&kp BACKSLASH>;
         };
-        /* ----- End of New Behavior ----- */
     };
 
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
-            display-name = "Default"; // Layer name for OLED
+            display-name = "Default Layer";
+
+            // -----------------------------------------------------------------------------------------
+            // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BSPC |
+            // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+            // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
+            //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+
             bindings = <
 &kp TAB             &kp Q             &kp W               &kp E           &kp R  &kp T        &kp Y      &kp U  &kp I      &kp O    &kp P                 &kp BSPC
-&kp LEFT_GUI        &mt LEFT_SHIFT A  &mt LEFT_CONTROL S  &mt LEFT_ALT D  &kp F  &kp G        &kp H      &kp J  &kp K      &kp L    &mt RIGHT_SHIFT SEMI  &TD_QUOTE_PIPE_BSLH  /* <-- Using your new Tap-Dance */
+&kp LEFT_GUI        &mt LEFT_SHIFT A  &mt LEFT_CONTROL S  &mt LEFT_ALT D  &kp F  &kp G        &kp H      &kp J  &kp K      &kp L    &mt RIGHT_SHIFT SEMI  &TD_QUOTE_PIPE
 &toggle_bt_layer 3  &kp Z             &kp X               &kp C           &kp V  &kp B        &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH              &TD_ESC_TICK
-                                                         &kp LGUI        &mo 1  &kp ENTER    &kp SPACE  &mo 2  &kp RALT
+                                                          &kp LGUI        &mo 1  &kp ENTER    &kp SPACE  &mo 2  &kp RALT
             >;
         };
 
         lower_layer {
-            display-name = "Lower"; // Layer name for OLED
+            display-name = "Lower Layer";
+
+            // -----------------------------------------------------------------------------------------
+            // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
+            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
+            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
+            //                    | GUI |     | SPC |   | ENT |     | ALT |
+
             bindings = <
-&kp TAB           &kp N1           &kp N2       &kp N3    &kp N4      &kp N5               &kp N6            &kp N7          &kp N8           &kp N9                 &kp N0                 &kp BSPC
-&mt LCTRL ESCAPE  &kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR  &kp DOUBLE_QUOTES    &kp SINGLE_QUOTE  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp COLON
-&kp LSHFT         &trans           &trans       &trans    &trans      &trans               &trans            &trans          &trans           &trans                &trans                 &trans
-                                                         &kp LGUI         &trans      &kp ENTER            &kp SPACE         &trans          &kp RALT
+&kp TAB           &kp N1           &kp N2       &kp N3    &kp N4      &kp N5              &kp N6             &kp N7          &kp N8           &kp N9                &kp N0                 &kp BSPC
+&mt LCTRL ESCAPE  &kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR  &kp LEFT_BRACKET    &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp COLON
+&kp LSHFT         &trans           &trans       &trans    &trans      &trans              &kp MINUS          &kp UNDER       &kp STAR         &kp CARET             &trans                 &trans
+                                                &kp LGUI  &trans      &kp ENTER           &kp SPACE          &trans          &kp RALT
             >;
         };
 
         raise_layer {
-            display-name = "Raise"; // Layer name for OLED
+            display-name = "Raise Layer";
+
+            // -----------------------------------------------------------------------------------------
+            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
+            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
+            // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
+            //                    | GUI |     | SPC |   | ENT |     | ALT |
+
             bindings = <
-&kp TAB    &kp F1        &kp F2       &kp F3       &kp F4         &kp F5                  &kp F6          &kp F7          &kp F8        &kp F9       &kp F10   &kp BSPC
+&kp TAB    &kp F1        &kp F2       &kp F3       &kp F4         &kp F5                  &kp F6          &kp F7          &kp F8        &kp F9           &kp F10   &kp BSPC
 &kp LCTRL  &kp LC(HOME)  &kp LC(END)  &kp PAGE_UP  &kp PAGE_DOWN  &trans                  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW  &kp BSLH  &kp GRAVE
-&kp LSHFT  &trans        &trans       &trans       &trans         &kp LS(LG(NUMBER_4))    &kp UNDER       &kp PLUS        &kp LBRC      &kp RBRC         &kp PIPE  &kp TILDE
-                                                         &kp LGUI         &trans         &kp DELETE           &kp BACKSPACE   &trans          &kp RALT
+&kp LSHFT  &trans        &trans       &trans       &trans         &kp LS(LG(NUMBER_4))    &kp UNDERSCORE  &kp EQUAL       &kp PLUS      &kp RBRC         &kp PIPE  &kp TILDE
+                                      &kp LGUI     &trans         &kp DELETE              &kp BACKSPACE   &trans          &kp RALT
             >;
         };
 
         Bluetooth {
-            display-name = "BT"; // Layer name for OLED
             bindings = <
 &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans  &trans  &trans  &trans
 &trans      &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans
 &trans      &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans
-                                                         &trans           &trans        &trans               &trans  &trans  &trans
+                                        &trans        &trans        &trans          &trans  &trans  &trans
             >;
         };
     };
