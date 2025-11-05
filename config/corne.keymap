@@ -12,13 +12,11 @@
     behaviors {
         toggle_bt_layer: toggle_bt_layer {
             compatible = "zmk,behavior-toggle-layer";
-            label = "BT_TOGGLE";
             #binding-cells = <1>;
         };
 
         TD_ESC_TICK: TD_ESC_TICK {
             compatible = "zmk,behavior-tap-dance";
-            label = "TD_ESC_TICK";
             #binding-cells = <0>;
             bindings = <&kp ESC>, <&kp GRAVE>, <&kp TILDE>;
         };
@@ -26,7 +24,6 @@
         /* ----- 2. HÀNH VI "TRIPLE TAP" CỦA BẠN ----- */
         TD_QUOTE_PIPE_BSLH: TD_QUOTE_PIPE_BSLH {
             compatible = "zmk,behavior-tap-dance";
-            label = "TD_QUOTE_PIPE_BSLH";
             #binding-cells = <0>;
             // 1 tap = ',  2 taps = |,  3 taps = \
             bindings = <&kp SQT>, <&kp PIPE>, <&kp BSLH>;
