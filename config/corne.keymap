@@ -134,5 +134,23 @@
                                         &trans        &trans        &trans          &trans  &trans  &trans
             >;
         };
+
+        Gaming {
+            bindings = <
+&kp F1     &kp Q  &kp W  &kp E           &kp R  &kp T      &trans  &trans  &trans  &trans  &trans  &trans
+&kp GRAVE  &kp A  &kp S  &kp D           &kp F  &kp G      &trans  &trans  &trans  &trans  &trans  &trans
+&kp F2     &kp Z  &kp X  &kp C           &kp V  &kp B      &trans  &trans  &trans  &trans  &trans  &trans
+                         &kp LEFT_SHIFT  &mo 1  &kp TAB    &trans  &mo 2   &trans
+            >;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        Layer_4 {
+            if-layers = <1 2>;
+            then-layer = <4>;
+        };
     };
 };
