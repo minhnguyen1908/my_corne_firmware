@@ -70,6 +70,11 @@
             bindings = <&kp BACKSPACE>;
             key-positions = <18 19>;
         };
+
+        Gaming_Layer {
+            bindings = <&tog 4>;
+            key-positions = <37 40>;
+        };
     };
 
     keymap {
@@ -137,10 +142,10 @@
 
         Gaming {
             bindings = <
-&kp F1     &kp Q  &kp W  &kp E           &kp R  &kp T      &trans  &trans  &trans  &trans  &trans  &trans
-&kp GRAVE  &kp A  &kp S  &kp D           &kp F  &kp G      &trans  &trans  &trans  &trans  &trans  &trans
-&kp F2     &kp Z  &kp X  &kp C           &kp V  &kp B      &trans  &trans  &trans  &trans  &trans  &trans
-                         &kp LEFT_SHIFT  &mo 1  &kp TAB    &trans  &mo 2   &trans
+&kp F1     &kp Q  &kp W  &kp E           &kp R   &kp T      &trans  &trans  &trans  &trans  &trans  &trans
+&kp GRAVE  &kp A  &kp S  &kp D           &kp F   &kp G      &trans  &trans  &trans  &trans  &trans  &trans
+&kp F2     &kp Z  &kp X  &kp C           &kp V   &kp B      &trans  &trans  &trans  &trans  &trans  &trans
+                         &kp LEFT_SHIFT  &trans  &kp TAB    &trans  &trans  &trans
             >;
         };
     };
