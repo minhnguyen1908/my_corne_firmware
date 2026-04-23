@@ -41,6 +41,7 @@
             quick-tap-ms = <200>;
             flavor = "tap-unless-interrupted";
             hold-while-undecided;
+            retro-tap;
         };
 
         MM_BS_DEL: MM_BS_DEL {
