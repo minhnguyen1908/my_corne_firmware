@@ -18,19 +18,6 @@
 
 / {
     behaviors {
-        toggle_bt_layer: toggle_bt_layer {
-            compatible = "zmk,behavior-toggle-layer";
-            label = "BT_TOGGLE";
-            #binding-cells = <1>;
-        };
-
-        TD_DEL_CapsWord: TD_DEL_CapsWord {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_DEL_CAPSWORD";
-            #binding-cells = <0>;
-            bindings = <&kp DEL>, <&caps_word>;
-        };
-
         MT_SHIFT_KEYS: MT_SHIFT_KEYS {
             compatible = "zmk,behavior-hold-tap";
             label = "MT_SHIFT_KEYS";
