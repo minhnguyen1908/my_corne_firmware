@@ -17,6 +17,8 @@
 
 &caps_word { continue-list = <UNDERSCORE BACKSPACE DELETE MINUS NUMBER_1 NUMBER_2 NUMBER_3 NUMBER_4 NUMBER_5 NUMBER_6 NUMBER_7 NUMBER_8 NUMBER_9 NUMBER_0>; };
 
+&lt { flavor = "balanced"; };
+
 / {
     behaviors {
         MT_SHIFT_KEYS: MT_SHIFT_KEYS {
@@ -39,6 +41,32 @@
             #binding-cells = <0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
+        hml: home_row_mod_left {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
+            flavor = "balanced";
+            hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35>;
+            hold-trigger-on-release;
+        };
+
+        hmr: home_row_mod_right {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
+            flavor = "balanced";
+            hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29>;
+            hold-trigger-on-release;
+        };
     };
 
     combos {
@@ -55,7 +83,7 @@
         };
 
         Gaming_Layer {
-            bindings = <&tog 4>;
+            bindings = <&tog 0>;
             key-positions = <37 40>;
         };
     };
@@ -73,10 +101,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp GRAVE  &kp Q               &kp W               &kp E           &kp R                        &kp T        &kp Y        &kp U                         &kp I            &kp O        &kp P                        &kp BACKSLASH
-&kp TAB    &mt LEFT_COMMAND A  &mt LEFT_CONTROL S  &mt LEFT_ALT D  &MT_SHIFT_KEYS LEFT_SHIFT F  &kp G        &kp H        &MT_SHIFT_KEYS RIGHT_SHIFT J  &mt RIGHT_ALT K  &mt RCTRL L  &mt RIGHT_COMMAND SEMICOLON  &kp SINGLE_QUOTE
-&mo 3      &kp Z               &kp X               &kp C           &kp V                        &kp B        &kp N        &kp M                         &kp COMMA        &kp DOT      &kp FSLH                     &caps_word
-                                                   &kp GLOBE       &lt 1 ESCAPE                 &kp ENTER    &lt 2 SPACE  &MM_BS_DEL                    &kp GLOBE
+&kp GRAVE  &kp Q                &kp W                &kp E            &kp R              &kp T        &kp Y        &kp U               &kp I             &kp O         &kp P                         &kp BACKSLASH
+&kp TAB    &hml LEFT_COMMAND A  &hml LEFT_CONTROL S  &hml LEFT_ALT D  &hml LEFT_SHIFT F  &kp G        &kp H        &hmr RIGHT_SHIFT J  &hmr RIGHT_ALT K  &hmr RCTRL L  &hmr RIGHT_COMMAND SEMICOLON  &kp SINGLE_QUOTE
+&mo 3      &kp Z                &kp X                &kp C            &kp V              &kp B        &kp N        &kp M               &kp COMMA         &kp DOT       &kp FSLH                      &caps_word
+                                                     &kp GLOBE        &lt 1 ESCAPE       &kp ENTER    &lt 2 SPACE  &MM_BS_DEL          &kp GLOBE
             >;
         };
 
@@ -120,15 +148,6 @@
 &trans      &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans
 &trans      &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans
                                         &trans        &trans        &trans          &trans  &trans  &trans
-            >;
-        };
-
-        Gaming {
-            bindings = <
-&kp F1     &kp Q  &kp W  &kp E    &kp R   &kp T        &trans  &trans  &trans  &trans  &trans  &trans
-&kp GRAVE  &kp A  &kp S  &kp D    &kp F   &kp G        &trans  &trans  &trans  &trans  &trans  &trans
-&kp F2     &kp Z  &kp X  &kp C    &kp V   &kp B        &trans  &trans  &trans  &trans  &trans  &trans
-                         &kp TAB  &trans  &kp SPACE    &trans  &trans  &trans
             >;
         };
     };
